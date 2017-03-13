@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:xenial
 MAINTAINER henrik@hedlund.im
 
 # Set the locale
@@ -11,7 +11,8 @@ ENV LC_ALL en_US.UTF-8
 RUN echo "Europe/Oslo" > /etc/timezone
 
 # Install some tools that're nice to have down the line
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y curl git nano
+RUN apt-get update && apt-get install -y curl git nano \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set xterm so we can use nano and other editors
 ENV TERM xterm
