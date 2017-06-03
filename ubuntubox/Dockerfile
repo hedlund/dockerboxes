@@ -19,6 +19,18 @@ ENV TERM xterm
 # Let's use bash instead of sh to make it simpler to install stuff
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
+# Configure the box to be a bit more useful
+ADD bashrc /root/.bashrc
+ADD bash_profile /root/.bash_profile
+ADD bash_prompt /root/.bash_prompt
+ADD inputrc /root/.inputrc
+ENV BOXNAME Ubuntubox
+
+# Create working directory
+RUN mkdir -p /work
+VOLUME [ "/work" ]
+WORKDIR /work
+
 # Run bash as the default command, but avoid using an entrypoint to we
 # can easily override it...
 CMD ["/bin/bash"]

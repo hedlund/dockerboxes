@@ -30,8 +30,3 @@ RUN eval "$(jenv init -)"  && \
 RUN mkdir -p /root/.m2 && \
     mkdir -p /root/.gradle
 VOLUME [ "/root/.m2", "/root/.gradle" ]
-
-# Create working directory
-RUN mkdir -p /work
-VOLUME [ "/work" ]
-WORKDIR /work
